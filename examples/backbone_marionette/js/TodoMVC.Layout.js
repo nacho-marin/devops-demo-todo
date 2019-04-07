@@ -7,6 +7,8 @@ var TodoMVC = TodoMVC || {};
 
 	var filterChannel = Backbone.Radio.channel('filter');
 
+	var images = ['./images/newbie.jpg','./images/expert.jpg'];
+	
 	TodoMVC.RootLayout = Mn.View.extend({
 
 		el: '.todoapp',
@@ -27,7 +29,8 @@ var TodoMVC = TodoMVC || {};
 		// UI bindings create cached attributes that
 		// point to jQuery selected objects
 		ui: {
-			input: '.new-todo'
+			input: '.new-todo',
+			image: '.home_image'
 		},
 
 		events: {
@@ -50,6 +53,9 @@ var TodoMVC = TodoMVC || {};
 			var todoText = this.ui.input.val().trim();
 
 			if (e.which === ENTER_KEY && todoText) {
+				var imageSrc = this.getUI('image');
+				var newImageSrc = _.filter(images,function(image){return image !== imageSrc.attr('src')})[0];
+				imageSrc.attr('src',newImageSrc);
 				this.collection.create({
 					title: todoText
 				});
