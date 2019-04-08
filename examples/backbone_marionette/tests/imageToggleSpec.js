@@ -27,4 +27,4 @@ driver.sleep(2000).then(function(){
     }
 });
 
-driver.quit();
+driver.sleep(1000).then(driver.quit());
