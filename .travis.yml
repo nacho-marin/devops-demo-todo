@@ -41,6 +41,8 @@ defaults: &defaults
     - echo Testing $CYPRESS_framework
     - $(npm bin)/print-env TRAVIS
     - npm run test
+  env:
+    - CYPRESS_framework=backbone_marionette
 
 jobs:
   include:
@@ -53,6 +55,7 @@ jobs:
     # this will run it in a separate job on TravisCI
     # all these jobs belong to same stage "test" thus will run in parallel
     - stage: test
-      env:
-        - CYPRESS_framework=backbone_marionette
       <<: *defaults
+    - stage: ZIP
+      script:
+        -zip -r todomvc.zip *
