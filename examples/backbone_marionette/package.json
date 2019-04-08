@@ -5,7 +5,10 @@
     "backbone.localstorage": "^1.1.6",
     "backbone.marionette": "^3.0.0",
     "backbone.radio": "^2.0.0",
+    "chromedriver": "^2.46.0",
     "jquery": "^1.11.2",
+    "selenium-standalone": "^6.16.0",
+    "selenium-webdriver": "^4.0.0-alpha.1",
     "todomvc-app-css": "^2.1.0",
     "todomvc-common": "^1.0.1",
     "underscore": "^1.6.0"
