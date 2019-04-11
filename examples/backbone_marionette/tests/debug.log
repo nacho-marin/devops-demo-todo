@@ -1,0 +1,5 @@
+[0408/151408.529:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acceso denegado} Un proceso ha solicitado acceso a un objeto, pero no se le han concedido esos derechos de acceso. (0xc0000022)
+[0408/151408.542:ERROR:exception_snapshot_win.cc(98)] thread ID 13760 not found in process
+[0408/151408.647:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acceso denegado} Un proceso ha solicitado acceso a un objeto, pero no se le han concedido esos derechos de acceso. (0xc0000022)
+[0408/151408.649:ERROR:exception_snapshot_win.cc(98)] thread ID 6972 not found in process
+[0408/165634.827:ERROR:exception_handler_server.cc(527)] ConnectNamedPipe: Se está cerrando la canalización. (0xE8)
