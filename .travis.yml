@@ -58,4 +58,4 @@ jobs:
       <<: *defaults
     - stage: ZIP
       script:
-        -python -c "import shutil;shutil.make_archive('todomvc','zip',root_dir='.', base_dir='.')“
+        -python -c "import shutil;shutil.make_archive('todomvc','zip',root_dir='.', base_dir='.')“1
