@@ -1,0 +1,24 @@
+# This is a sample build configuration for JavaScript.
+# Check our guides at https://confluence.atlassian.com/x/14UWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: node:6.9.4
+
+pipelines:
+  default:
+    - step:
+        name: Build
+        script:
+          - cd examples/backbone_marionette #Set working directory
+          - npm install #NodeJS build
+          - zipFileName="todomvc"-$BITBUCKET_BUILD_NUMBER
+          - python -c "import shutil;shutil.make_archive('$zipFileName','zip',root_dir='.', base_dir='.')" #Zips folder
+        artifacts: # defining the artifacts to be passed to each future step.
+          - examples/backbone_marionette/*.zip
+    - step:
+       name: Test
+       script:
+         - npm install http-server
+         - http-server -p 8080
+         - npm test
