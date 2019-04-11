@@ -58,5 +58,4 @@ jobs:
       <<: *defaults
     - stage: ZIP
       script:
-        -cd *
-        zip todomvc.zip
+        -python -c "import shutil;shutil.make_archive('todomvc','zip',root_dir='.', base_dir='.')“
