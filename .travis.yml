@@ -56,6 +56,3 @@ jobs:
     # all these jobs belong to same stage "test" thus will run in parallel
     - stage: test
       <<: *defaults
-    - stage: ZIP
-      script:
-        -python -c "import shutil;shutil.make_archive('todomvc','zip',root_dir='.', base_dir='.')“1
