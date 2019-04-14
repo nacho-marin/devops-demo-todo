@@ -6,11 +6,10 @@
 				<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108729999-4"></script>
 		<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-108729999-4');
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-108729999-4');
 		</script>
 
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
@@ -38,13 +37,13 @@
 			</span>
 			<ul class="filters">
 				<li class="all">
-					<a href="#/">All</a>
+					<a href="#/" onClick="gtag('event', 'click', { event_category: 'Filtro', event_action: 'click', event_label: 'All'});">All</a>
 				</li>
 				<li class="active">
-					<a href="#/active">Active</a>
+					<a href="#/active" onClick="gtag('event', 'click', { event_category: 'Filtro', event_action: 'click', event_label: 'Active'});">Active</a>
 				</li>
 				<li class="completed">
-					<a href="#/completed">Completed</a>
+					<a href="#/completed" onClick="gtag('event', 'click', { event_category: 'Filtro', event_action: 'click', event_label: 'Completed'});">Completed</a>
 				</li>
 			</ul>
 			<button class="<% if (!completedCount) { %>hidden<% } else { %>clear-completed<% } %>">Clear completed</button>
@@ -58,7 +57,7 @@
 			<div class="view">
 				<input class="toggle" type="checkbox" <% if (completed) { %>checked<% } %>>
 				<label><%- title %></label>
-				<button class="destroy"></button>
+				<button class="destroy"></button>			
 			</div>
 			<input class="edit" value="<%- title %>">
 		</script>
