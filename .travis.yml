@@ -43,11 +43,8 @@ before_install:
 
 jobs:
   include:
-    - stage: Build
+    - stage: Build & Test
       script:        
         - npm ci #Installs a project with a clean state
-    - stage: Test
-      before_script:
-        - http-server & #Starts a http-server
-      script:
-        - npm test #Runs the tests indicated in the package.json file
+        - './tests/start-server.sh' #Starts a http-server in the background
+        - npm test #Runs the tests indicated in the package.json file   
