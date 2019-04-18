@@ -46,5 +46,7 @@ jobs:
     - stage: Build & Test
       script:        
         - npm ci #Installs a project with a clean state
-        - './tests/start-server.sh' #Starts a http-server in the background
+      before_script:
+        - sh ./tests/start-server.sh #Starts a http-server in the background
+      script:
         - npm test #Runs the tests indicated in the package.json file   
