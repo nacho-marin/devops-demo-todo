@@ -23,6 +23,7 @@
         "underscore": "^1.6.0"
     },
     "devDependencies": {
+        "http-server": "^0.11.1",
         "phantom": "^6.2.0"
     }
 }
