@@ -7,7 +7,12 @@ language: node_js
 node_js:
   - '9.3.0'
 notifications:
-  irc: 'irc.freenode.org#tastejs'
+    email:
+    recipients:
+      - one@example.com
+      - other@example.com
+    on_success: never # Notification disabled in case of build success
+    on_failure: never # Notification disabled in case of build failure
 cache:
   directories:
     - tooling/node_modules
@@ -31,32 +36,25 @@ env:
     - GH_PROJECT_NAME: todomvc
     - CHROME_PATH: '/home/travis/build/tastejs/todomvc/chrome-linux/chrome'
 
-#update npm to latest stable version
-before_install:
-  - npm install --global npm@5.8.0
 
-# common build steps for each test job
-defaults: &defaults
-  script:
-    - echo Testing $CYPRESS_framework
-    - $(npm bin)/print-env TRAVIS
-    - npm run test
-  env:
-    - CYPRESS_framework=backbone_marionette
+before_install:
+  - npm install --global npm@5.8.0 #Update npm to latest stable version
+  - cd examples/backbone_marionette #Set working directory
+  - npm install --save-dev http-server #Installs the http-server module in dev mode
+ 
 
 jobs:
   include:
-    # install NPM dependencies before each test job
-    - stage: npm ci
+    - stage: Build & Test
+      script:        
+        - npm ci #Installs a project with a clean state
+      before_script:
+        - sh ./tests/start-server.sh #Starts a http-server in the background
       script:
-        - npm ci
-        - $(npm bin)/print-env TRAVIS
-    # define a separate script for each "examples/*" folder
-    # this will run it in a separate job on TravisCI
-    # all these jobs belong to same stage "test" thus will run in parallel
-    - stage: test
-      <<: *defaults
-    - stage: ZIP
-      script:
-        -cd *
-        zip todomvc.zip
+        - npm test #Runs the tests indicated in the package.json file     
+      deploy:
+        provider: openshift
+        user: $OpenShift_Username
+        password: $OpenShift_Password # can be encrypted
+        app: jws31-tomcat8-mongodb-persistent-s2i
+        domain: $OpenShift_Domain
