@@ -35,24 +35,12 @@ env:
 before_install:
   - npm install --global npm@5.8.0
 
-# common build steps for each test job
-defaults: &defaults
-  script:
-    - echo Testing $CYPRESS_framework
-    - $(npm bin)/print-env TRAVIS
-    - npm run test
-  env:
-    - CYPRESS_framework=backbone_marionette
-
 jobs:
   include:
-    # install NPM dependencies before each test job
-    - stage: npm ci
+    - stage: Build
       script:
-        - npm ci
-        - $(npm bin)/print-env TRAVIS
-    # define a separate script for each "examples/*" folder
-    # this will run it in a separate job on TravisCI
-    # all these jobs belong to same stage "test" thus will run in parallel
-    - stage: test
-      <<: *defaults
+        - cd examples/backbone_marionette #Set working directory 
+        - npm ci #Installs a project with a clean state
+    - stage: Test
+      script:
+        - npm test
