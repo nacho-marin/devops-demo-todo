@@ -47,5 +47,7 @@ jobs:
       script:        
         - npm ci #Installs a project with a clean state
     - stage: Test
+      before_script:
+        - http-server & #Starts a http-server
       script:
         - npm test #Runs the tests indicated in the package.json file
