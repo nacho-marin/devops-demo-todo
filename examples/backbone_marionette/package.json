@@ -21,5 +21,8 @@
         "todomvc-app-css": "^2.1.0",
         "todomvc-common": "^1.0.1",
         "underscore": "^1.6.0"
+    },
+    "devDependencies": {
+        "phantom": "^6.2.0"
     }
 }
