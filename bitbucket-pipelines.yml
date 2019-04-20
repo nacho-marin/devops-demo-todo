@@ -8,17 +8,15 @@ image: node:6.9.4
 pipelines:
   default:
     - step:
-        name: Build
+        name: Build & Test
         script:
-          - cd examples/backbone_marionette #Set working directory
-          - npm install #NodeJS build
-          - zipFileName="todomvc"-$BITBUCKET_BUILD_NUMBER
+          - npm install --global npm@5.8.0                #Update npm to latest stable version
+          - cd examples/backbone_marionette               #Set working directory
+          - npm install --save-dev http-server            #Installs the http-server module in dev mode
+          - npm ci                                        #Installs a project with a clean state
+          - zipFileName="todomvc"-$BITBUCKET_BUILD_NUMBER #Names the zip file
           - python -c "import shutil;shutil.make_archive('$zipFileName','zip',root_dir='.', base_dir='.')" #Zips folder
-        artifacts: # defining the artifacts to be passed to each future step.
+          - sh ./tests/start-server.sh                    #Starts a http-server in the background
+          - npm test                                      #Runs the tests indicated in the package.json file
+        artifacts:                                        #Defines the artifacts to be passed to each future step
           - examples/backbone_marionette/*.zip
-    - step:
-       name: Test
-       script:
-         - npm install http-server
-         - http-server -p 8080
-         - npm test
