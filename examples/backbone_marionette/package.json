@@ -5,7 +5,6 @@
     "description": "",
     "main": "TodoMVC.Application.js",
     "scripts": {
-        "start": "TodoMVC.Application.js",
         "test": "node tests/ToggleImage_Phantom.js"
     },
     "author": "Quint Wellington Redwood <www.quintgroup.com>",
