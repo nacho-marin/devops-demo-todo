@@ -52,11 +52,3 @@ jobs:
         - sh ./tests/start-server.sh #Starts a http-server in the background
       script:
         - npm test #Runs the tests indicated in the package.json file
-      after_script:
-        - echo $OpenShift_Domain     
-     # deploy:
-      #provider: openshift
-        #user: $OpenShift_Username
-        #password: $OpenShift_Password # can be encrypted
-        #app: jws31-tomcat8-mongodb-persistent-s2i
-        #domain: $OpenShift_Domain
