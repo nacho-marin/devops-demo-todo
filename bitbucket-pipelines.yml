@@ -10,11 +10,13 @@ pipelines:
     - step:
         name: Build & Test
         script:
-          - cd examples/backbone_marionette #Set working directory
-          - npm ci #Installs a project with a clean state
+          - npm install --global npm@5.8.0                #Update npm to latest stable version
+          - cd examples/backbone_marionette               #Set working directory
+          - npm install --save-dev http-server            #Installs the http-server module in dev mode
+          - npm ci                                        #Installs a project with a clean state
           - zipFileName="todomvc"-$BITBUCKET_BUILD_NUMBER #Names the zip file
           - python -c "import shutil;shutil.make_archive('$zipFileName','zip',root_dir='.', base_dir='.')" #Zips folder
-          - sh ./tests/start-server.sh #Starts a http-server in the background
-          - npm test #Runs the tests indicated in the package.json file
-        artifacts: # defining the artifacts to be passed to each future step.
+          - sh ./tests/start-server.sh                    #Starts a http-server in the background
+          - npm test                                      #Runs the tests indicated in the package.json file
+        artifacts:                                        #Defines the artifacts to be passed to each future step
           - examples/backbone_marionette/*.zip
