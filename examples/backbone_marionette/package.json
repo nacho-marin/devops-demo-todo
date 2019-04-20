@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "helloworld",
+    "name": "todo_app",
     "version": "1.0.0",
     "description": "",
     "main": "TodoMVC.Application.js",
