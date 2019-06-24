@@ -38,7 +38,6 @@ env:
 
 
 before_install:
-  - npm install --global npm@5.8.0 #Update npm to latest stable version
   - cd examples/backbone_marionette #Set working directory
  
 
