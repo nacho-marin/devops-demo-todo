@@ -1,3 +1,3 @@
 #!/bin/bash
 http-server &
-sleep 3
+sleep 13
